@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog – anteprima</title>
+<style>
+:root{
+  --theme:#fff;--entry:#fff;--primary:#1e1e1e;--secondary:#6c6c6c;--tertiary:#d6d6d6;--content:#1f1f1f;--border:#eee;--code:#f5f5f5;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --theme:#1d1e20;--entry:#2e2e33;--primary:#dadadb;--secondary:#9b9c9d;--tertiary:#414244;--content:#c4c4c5;--border:#333;--code:#37383e;}}
+:root[data-theme="dark"]{--theme:#1d1e20;--entry:#2e2e33;--primary:#dadadb;--secondary:#9b9c9d;--tertiary:#414244;--content:#c4c4c5;--border:#333;--code:#37383e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--theme);color:var(--primary);font:400 1rem/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.bar{max-width:720px;width:100%;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-size:24px;font-weight:700;color:var(--primary);text-decoration:none;cursor:pointer}
+.right{display:flex;align-items:center;gap:16px}
+nav a{font-size:16px;color:var(--primary);text-decoration:none;margin-left:16px;padding:2px 0}
+nav a:hover{border-bottom:2px solid var(--primary)}
+#tg{all:unset;cursor:pointer;display:flex;padding:4px;color:var(--primary)}
+#tg:focus-visible,a:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+main{flex:1;max-width:720px;width:100%;margin:0 auto;padding:24px 20px}
+.info{padding:12px 0 24px}
+.info h1{font-size:2rem;margin:0 0 .5rem;line-height:1.2}
+.info p{margin:0;color:var(--content)}
+.card{position:relative;background:var(--entry);border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:24px;cursor:pointer;transition:transform .1s}
+.card:active{transform:scale(.99)}
+.card h2{font-size:24px;margin:0 0 8px;line-height:1.3}
+.card p{margin:0;color:var(--content);font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta{margin-top:8px;font-size:14px;color:var(--secondary)}
+.card:focus-visible{outline:2px solid var(--primary)}
+.art h1{font-size:2.2rem;line-height:1.2;margin:8px 0}
+.crumb{font-size:14px;color:var(--secondary);margin-bottom:12px}
+.crumb a{color:inherit;cursor:pointer;text-decoration:none}
+.art p{margin:0 0 1.1rem;color:var(--content);font-size:18px;line-height:1.7}
+.art h2{font-size:1.6rem;margin:2rem 0 .8rem}
+.art code{background:var(--code);padding:2px 6px;border-radius:4px;font-size:.9em}
+.tags{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap}
+.tags span{background:var(--code);border-radius:6px;padding:4px 14px;font-size:14px;color:var(--secondary)}
+footer{text-align:center;padding:24px 0;font-size:12px;color:var(--secondary)}
+.note{max-width:720px;margin:0 auto 16px;padding:0 20px;font-size:13px;color:var(--secondary)}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="logo" id="home" role="link" tabindex="0">Blog</a>
+  <div class="right">
+    <button id="tg" aria-label="Cambia tema"><svg width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    <nav><a href="#" onclick="return false">Articoli</a><a href="#" onclick="return false">Tag</a></nav>
+  </div>
+</header>
+
+<main id="view"></main>
+
+<p class="note">Anteprima indicativa: l'aspetto reale può differire leggermente quando il sito viene costruito da Hugo.</p>
+<footer>© 2026 Blog · Powered by Hugo &amp; PaperMod</footer>
+
+<script>
+var view=document.getElementById("view");
+function home(){
+  view.innerHTML='<section class="info"><h1>Blog</h1><p>Tobia Vallo</p></section>'+
+  '<article class="card" id="c" tabindex="0" role="link"><h2>Il mio primo articolo</h2><p>Un articolo di prova: cancellalo e scrivi il tuo.</p><div class="meta">15 ottobre 2026 · 1 min · Tobia Vallo</div></article>';
+  var c=document.getElementById("c");c.onclick=art;c.onkeydown=function(e){if(e.key==="Enter")art()};
+  window.scrollTo(0,0);
+}
+function art(){
+  view.innerHTML='<div class="art"><div class="crumb"><a id="b1">Home</a> » <a id="b2">Articoli</a></div>'+
+  '<h1>Il mio primo articolo</h1><div class="meta" style="margin-bottom:28px">15 ottobre 2026 · 1 min · Tobia Vallo</div>'+
+  '<p>Questo è un articolo di prova. Cancella queste righe e scrivi qui il tuo testo.</p>'+
+  '<p>Ogni articolo è un file con estensione <code>.md</code> dentro la cartella <code>content/posts</code>. Per andare a capo lascia una riga vuota tra un paragrafo e l\'altro.</p>'+
+  '<h2>Un titoletto</h2><p>Con due cancelletti all\'inizio della riga crei un titolo di sezione. Con <b>due asterischi</b> metti il testo in grassetto, con <i>un asterisco</i> in corsivo.</p>'+
+  '<div class="tags"><span>vela</span></div></div>';
+  document.getElementById("b1").onclick=home;document.getElementById("b2").onclick=home;
+  window.scrollTo(0,0);
+}
+document.getElementById("home").onclick=home;
+document.getElementById("home").onkeydown=function(e){if(e.key==="Enter")home()};
+document.getElementById("tg").onclick=function(){
+  var r=document.documentElement,d=r.getAttribute("data-theme");
+  var dark=d?d==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  r.setAttribute("data-theme",dark?"light":"dark");
+};
+home();
+</script>
+</body>
+</html>
